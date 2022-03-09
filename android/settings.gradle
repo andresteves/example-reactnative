@@ -1,3 +1,4 @@
 rootProject.name = 'deeparRNExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
-include ':app', ':deepar'
+include ':app'
+include ':deepar'
