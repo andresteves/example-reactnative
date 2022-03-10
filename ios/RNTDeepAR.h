@@ -17,7 +17,8 @@
 @interface RNTDeepAR : RCTView <ARViewDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (nonatomic, assign) BOOL flashOn;
-
+@property (nonatomic, strong) CameraController* cameraController;
+@property (nonatomic, strong) DeepAR* deepar;
 @property (nonatomic, copy) RCTBubblingEventBlock onEventSent;
 
 -(void)switchCamera;
