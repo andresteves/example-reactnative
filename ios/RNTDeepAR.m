@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RNTDeepAR.h"
 #import "React/UIView+React.h"
+#import <DeepAR/CameraController.h>
 
 @implementation RNTDeepAR {
   CGRect _frame;
@@ -19,35 +20,41 @@
 
 -(instancetype)init {
   if ((self = [super init])) {
-    _arview = [[ARView alloc] init];
     
-    // Set your app licence key for iOS project here (created through developer.deepar.ai)
-    [_arview setLicenseKey:@"your_licence_key_here"];
+    // Instantiate ARView and add it to view hierarchy.
+    self.deepar = [[DeepAR alloc] init];
+
+    [self.deepar setLicenseKey:@"3bd08ee73d4fa5a331dd54e04b776610fbb9ac023c2ae34032aaaee1027be8650af603b943ac72b9"];
+    [self.deepar initialize];
+    self.deepar.delegate = self;
+
+    _arview = (ARView*)[self.deepar createARViewWithFrame:[UIScreen mainScreen].bounds];
+    [self insertSubview:_arview atIndex:0];
+    self.cameraController = [[CameraController alloc] init];
+    self.cameraController.deepAR = self.deepar;
+
+    [self.cameraController startCamera];
+
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
     
-    _arview.delegate = self;
-    [self addSubview:_arview];
-    
-    
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    [_arview initializeWithCaptureSessionPreset:AVCaptureSessionPreset1280x720 orientation:orientation cameraPosition:AVCaptureDevicePositionFront];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification  object:nil];
   }
   
   return self;
 }
 
 - (void)dealloc {
-  [_arview shutdown];
-  _arview.delegate = nil;
+  [self.deepar shutdown];
 }
 
 
 -(void)switchCamera {
   if (_arview) {
-    AVCaptureDevicePosition position =  [_arview getCameraPosition] == AVCaptureDevicePositionBack ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
-    [_arview switchCamera:position];
+    self.cameraController.position = self.cameraController.position == AVCaptureDevicePositionBack ? AVCaptureDevicePositionFront : AVCaptureDevicePositionBack;
     
     NSString* message;
-    if (position == AVCaptureDevicePositionBack) {
+    if (self.cameraController.position == AVCaptureDevicePositionBack) {
       message = @"back";
     } else {
       message = @"front";
@@ -77,7 +84,7 @@
 
 
 -(void)startRecording {
-  if (self.flashOn && [_arview getCameraPosition] == AVCaptureDevicePositionBack) {
+  if (self.flashOn && self.cameraController.position == AVCaptureDevicePositionBack) {
     Class captureDeviceClass = NSClassFromString(@"AVCaptureDevice");
     if (captureDeviceClass != nil) {
       AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -106,51 +113,11 @@
 }
 
 -(void)finishRecording {
-  
-  // Turn of torch
-  if (self.flashOn) {
-    // check if flashlight available
-    Class captureDeviceClass = NSClassFromString(@"AVCaptureDevice");
-    if (captureDeviceClass != nil) {
-      AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-      if ([device hasTorch] && [device hasFlash]){
-        [device lockForConfiguration:nil];
-        [device setTorchMode:AVCaptureTorchModeOff];
-        [device setFlashMode:AVCaptureFlashModeOff];
-        [device unlockForConfiguration];
-      }
-    }
-  }
-  
-  if(_arview) {
-    [_arview finishRecording];
-  }
+    [self.deepar finishVideoRecording];
 }
 
 -(void)takeScreenshot {
-  if (self.flashOn && [_arview getCameraPosition] == AVCaptureDevicePositionBack) {
-    Class captureDeviceClass = NSClassFromString(@"AVCaptureDevice");
-    if (captureDeviceClass != nil) {
-      AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-      if ([device hasTorch] && [device hasFlash]){
-        
-        [device lockForConfiguration:nil];
-        [device setTorchMode:AVCaptureTorchModeOn];
-        [device setFlashMode:AVCaptureFlashModeOn];
-        [device unlockForConfiguration];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-          if(self->_arview) {
-            [self->_arview takeScreenshot];
-          }
-        });
-      }
-    }
-  } else {
-    if(_arview) {
-      [_arview takeScreenshot];
-    }
-  }
+  [self.deepar takeScreenshot];
 }
 
 -(void)switchEffect:(NSString*)effect andSlot:(NSString*)slot {
@@ -239,6 +206,19 @@
 
 -(void)imageVisibilityChanged:(BOOL)imageVisible {
   self.onEventSent(@{ @"type": @"imageVisibilityChanged", @"value": imageVisible ? @"true" : @"false" });
+}
+
+- (void)orientationChanged:(NSNotification *)notification {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationLandscapeLeft) {
+        self.cameraController.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+    } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+        self.cameraController.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+    } else if (orientation == UIInterfaceOrientationPortrait) {
+        self.cameraController.videoOrientation = AVCaptureVideoOrientationPortrait;
+    } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        self.cameraController.videoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
+    }
 }
 
 @end

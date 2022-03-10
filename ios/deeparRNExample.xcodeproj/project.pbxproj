@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,10 +11,10 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		6526DEBB27DA05A0009C329F /* DeepAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6526DEB927DA0598009C329F /* DeepAR.framework */; platformFilter = ios; };
+		6526DEBC27DA05A0009C329F /* DeepAR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6526DEB927DA0598009C329F /* DeepAR.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A476490240D54D700E07300 /* RNTDeepARViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A47648F240D54D700E07300 /* RNTDeepARViewManager.m */; };
 		9A476493240D552100E07300 /* RNTDeepAR.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A476492240D552100E07300 /* RNTDeepAR.m */; };
-		9A476496240D5E6400E07300 /* DeepAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A476494240D574B00E07300 /* DeepAR.framework */; };
-		9A476497240D5E6400E07300 /* DeepAR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9A476494240D574B00E07300 /* DeepAR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A4764C0240E89A200E07300 /* tape_face in Resources */ = {isa = PBXBuildFile; fileRef = 9A4764AF240E89A200E07300 /* tape_face */; };
 		9A4764C1240E89A200E07300 /* topology in Resources */ = {isa = PBXBuildFile; fileRef = 9A4764B0240E89A200E07300 /* topology */; };
 		9A4764C2240E89A200E07300 /* pumpkin in Resources */ = {isa = PBXBuildFile; fileRef = 9A4764B1240E89A200E07300 /* pumpkin */; };
@@ -42,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9A476497240D5E6400E07300 /* DeepAR.framework in Embed Frameworks */,
+				6526DEBC27DA05A0009C329F /* DeepAR.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +64,7 @@
 		32EA201765DB0CB20C90D109 /* Pods-deeparRNExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeparRNExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deeparRNExampleTests/Pods-deeparRNExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		46FFC3B3BEB97C447B660A09 /* Pods-deeparRNExample-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeparRNExample-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-deeparRNExample-tvOS/Pods-deeparRNExample-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		61448146BD890182BDA32513 /* libPods-deeparRNExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-deeparRNExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6526DEB927DA0598009C329F /* DeepAR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeepAR.framework; path = deeparRNExample/DeepAR.framework; sourceTree = "<group>"; };
 		6E6B962A9701B4A4B76178D6 /* Pods-deeparRNExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeparRNExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-deeparRNExample/Pods-deeparRNExample.release.xcconfig"; sourceTree = "<group>"; };
 		7AA8FB96774543A76C6318BB /* Pods-deeparRNExample-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeparRNExample-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-deeparRNExample-tvOS/Pods-deeparRNExample-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		8202DB50049704C0AA425441 /* Pods-deeparRNExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-deeparRNExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-deeparRNExampleTests/Pods-deeparRNExampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		9A47648F240D54D700E07300 /* RNTDeepARViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTDeepARViewManager.m; sourceTree = "<group>"; };
 		9A476491240D551100E07300 /* RNTDeepAR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTDeepAR.h; sourceTree = "<group>"; };
 		9A476492240D552100E07300 /* RNTDeepAR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTDeepAR.m; sourceTree = "<group>"; };
-		9A476494240D574B00E07300 /* DeepAR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DeepAR.framework; sourceTree = "<group>"; };
 		9A4764AF240E89A200E07300 /* tape_face */ = {isa = PBXFileReference; lastKnownFileType = file; path = tape_face; sourceTree = "<group>"; };
 		9A4764B0240E89A200E07300 /* topology */ = {isa = PBXFileReference; lastKnownFileType = file; path = topology; sourceTree = "<group>"; };
 		9A4764B1240E89A200E07300 /* pumpkin */ = {isa = PBXFileReference; lastKnownFileType = file; path = pumpkin; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F64A4285E28C7D90CA231636 /* libPods-deeparRNExample.a in Frameworks */,
-				9A476496240D5E6400E07300 /* DeepAR.framework in Frameworks */,
+				6526DEBB27DA05A0009C329F /* DeepAR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,8 +184,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6526DEB927DA0598009C329F /* DeepAR.framework */,
 				9A4764AE240E89A200E07300 /* effects */,
-				9A476494240D574B00E07300 /* DeepAR.framework */,
 				13B07FAE1A68108700A75B9A /* deeparRNExample */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* deeparRNExampleTests */,
@@ -263,11 +263,6 @@
 			attributes = {
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Facebook;
-				TargetAttributes = {
-					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 339454YJJ4;
-					};
-				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "deeparRNExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -401,20 +396,25 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 339454YJJ4;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = FY7RKG4Z9X;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/deeparRNExample",
 				);
 				INFOPLIST_FILE = deeparRNExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.deepar.rnexample;
+				PRODUCT_BUNDLE_IDENTIFIER = floculture.deepar.example;
 				PRODUCT_NAME = "DeepAR RN Example";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -426,20 +426,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 339454YJJ4;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = FY7RKG4Z9X;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/deeparRNExample",
 				);
 				INFOPLIST_FILE = deeparRNExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ai.deepar.rnexample;
+				PRODUCT_BUNDLE_IDENTIFIER = floculture.deepar.example;
 				PRODUCT_NAME = "DeepAR RN Example";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
