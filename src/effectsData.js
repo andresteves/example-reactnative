@@ -28,8 +28,8 @@ export var effectsData = [
     title: 'Background segmentation',
   },
   {
-    name: 'hair_segmentation',
-    title: 'Hair segmentation'
+    name: 'hat_goldie',
+    title: 'Hair Beard',
   },
   {
     name: 'flower_crown',
